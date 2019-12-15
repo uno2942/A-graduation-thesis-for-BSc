@@ -13,6 +13,7 @@
 %bibnotes,
  amsmath,amssymb,
  aps,
+ prl,
 %pra,
 %prb,
 %rmp,
@@ -24,6 +25,9 @@
 \usepackage{graphicx}
 \usepackage{dcolumn}
 \usepackage{bm}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{kotex}
 %\usepackage{hyperref}% add hypertext capabilities
 %\usepackage[mathlines]{lineno}% Enable numbering of text and display math
 %\linenumbers\relax % Commence numbering lines
@@ -37,6 +41,60 @@
 %]{geometry}
 
 \begin{document}
+
+\begin{titlepage}
+\begin{center}
+\vspace*{5em}
+
+\Large 학사학위논문
+
+\vspace{7em}
+
+\Huge{\textbf{.}}
+ 
+\vfill
+ 
+\Large 박성빈 (Park SungBin)
+
+\vspace{3em} 
+
+2019년 1....2월 31일
+
+\vspace{3em}
+
+포항공과대학교 물리학과
+
+\newpage
+
+\vspace*{5em}
+
+\Huge . \\ \vspace{0.5em} Electromagnetic Duality
+
+\vspace{3em}
+
+\Large 박성빈 (Park SungBin)
+
+\vfill
+
+위 논문은 포항공과대학교 학사 학위논문으로 \\ \vspace{0.5em} 학사논문 심사를 통과하였음을 인정합니다.
+
+\vspace{3em}
+
+2019년 1.....2월 31일
+
+\vspace{3em}
+
+연구지도교수 조길영 (서명)
+ 
+\end{center}
+
+\clearpage
+\thispagestyle{empty}
+
+\end{titlepage}
+
+\setcounter{page}{1}
+
 \title{Manuscript Title}
 
 \author{Sung Bin Park}%
@@ -59,19 +117,57 @@ covered at length in the main body of the article.
 
 \section{\label{sec:level1}Introduction}
 
-.
+Since 1960s, two-dimensional electron system has been developed with progress of transistor industry. The well-known electron system is GaAs-AlGaAs heterojunction which was used for discovery of integer and quantum hall effect.\cite{Yoshioka_QHE}
+Brief history (2-dim electron system for transistor developed -> (GaAs-AlGaAs heterojunction is studied -> 1980 Kon discovered integer quantum hall effect which is described by Landau level -> 1982 fractional quantum hall discovered -> Laughlin and Tao-Thouless state were proposed -> Though Tao-Thouless proposal was declined by himself, it was studied and shows adibatic connection to(?) Laughlin explanation and interesting properties.)
+In this paper, I'll review fractional quantum hall effect and Tao-Thouless state.
 
-\subsection{\label{sec:level2}Second-level heading: Formatting}
-miya
-
-\subsubsection{Wide text (A level-3 head)}
-o
 \section{THE INTEGER QUANTUM HALL EFFECT}
+The integer quantum Hall effect is a quantum version of  Hall effect which shows quantized Hall conductivity
+\begin{equation}
+\sigma_{H} = \frac{I_x}{V_H} = \nu \frac{e^2}{h}
+\end{equation}
+% Need figure?
+The integer quantum hall effect can be explained in an ideal model using Landau level even though it can be observed in the sample with high impurities and perfections.\cite{Kittel2004} In this section, I'll only review the ideal case that will be used for further discussion.
 
+To describe Hall effect model, I'll use cartesian coordinate system that the voltage is applied along y direction, electrons move in xy plane, and constant magnetic field is applied along positive $z$ axis. Also assume that electrons don't have interaction with others, then I can write the Hamiltonian of this system.
+\begin{equation}
+\hat{H} = \frac{1}{2m_e}\left(\hat{p}-e\hat{A}(\vec{r}, t)\right)^2
+\end{equation}
+To solve Hamiltonian for electrons, I need to fix a gauge for magnetic vector potential. For now, I'll choose Landau gauge $\vec{A}=(0, Bx, 0)$ where $B$ denotes the strength of magnetic field. The Hamiltonian then changes to
+\begin{equation}
+\hat{H} = \frac{1}{2m_e}\left(\hat{p}_x^2+(\hat{p}_y-eB\hat{x})^2\right).
+\end{equation}
+Since $\hat{H}$ commutes with $\hat{p}_y$ and $\hat{p}_z$, I can set the eigenstate of the Hamiltonian to have eigenvalue $\hbar k$ for $\hat{p}_y$ and 0 for $\hat{p}_z$ since the electrons are confined in xy plane. Now, let's rewrite the Hamiltonian by $\omega_c = eB/m_e$ and $l_B = \sqrt{\frac{\hbar}{eB}}$ with the eigenvalues, then it becomes
+\begin{equation}
+\hat{H} = \frac{\hat{p}_x^2}{2m_e} + \frac{1}{2}m_e\omega_c^2(\hat{x}-kl_B^2)^2,
+\end{equation}
+which is the Hamiltonian for harmonic oscillator. The $l_B$ is called \textit{magnetic length}. The energy for this model is same as harmonic oscillator, \textit{i.e.}, 
+\begin{equation}
+    E_n = \hbar \omega_c \left(n+\frac{1}{2}\right)
+\end{equation}
+for non-negative integer $n$.
+
+Let's calculate the number of states for each energy level. Assume the size of plane is finite and each length is $L_x$, $L_y$ for each coordinate. For $y$ direction, the number of possible $k$ is $L_y/2\pi$ using the translation invariance, but for $x$, we can use the condition $0\leq kl_B^2\leq L_x$. Therefore, we get the degeneracy for each energy level by
+\begin{equation}\label{Eq:6}
+    N = \frac{L_x}{l_B^2}\frac{L_y}{2\pi} = \frac{BA}{2\pi\hbar/e} = \frac{BA}{\Phi_0}.
+\end{equation}
+The $\Phi_0$ is called magnetic flux quantum.
+
+To apply Landau level for integer quantum Hall effect, first assume that $\hbar \omega_c\gg k_B T$ so that the thermal effect is not that big. Again assuming that the Fermi level falls between Landau level, then we get the total number of electrons by multiplying some integer to $N$ in \eqref{Eq:6}. By denoting $n_e$ be a density of electrons, we get
+\begin{equation}
+    n_e = \nu \frac{B}{\Phi_0}
+\end{equation}
+for some integer $\nu$.
+
+Now, I can insert above result to classical Hall effect equation derived using Drude model. Furthermore, I can assume there is few elastic and inelastic collision in Drude model in my setting since all Landau level below Fermi level are filled and gaining/losing energy are few because of in low temperature. Therefore, I get the Hall ....
+\begin{equation}
+    \sigma_H = \nu \frac{e^2}{2\pi\hbar}.....
+\end{equation}
 \section{THE FRACTIONAL QUANTUM HALL EFFECT}
-
+Fractional quantum hall effect 
 \section{THE TAO-THOULESS STATE}
 
+\bibliography{mybib.bib}
 \end{document}
 %
 % ****** End of file apssamp.tex ******
